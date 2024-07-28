@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+class Print {
+public:
+    void show(int i) {
+        cout << "Printing int: " << i << endl;
+    }
+
+    void show(double d) {
+        cout << "Printing double: " << d << endl;
+    }
+
+    void show(string s) {
+        cout << "Printing string: " << s << endl;
+    }
+};
+
+int main() {
+    Print p;
+    p.show(5);
+    p.show(3.14);
+    p.show("Hello, World!");
+    return 0;
+}
