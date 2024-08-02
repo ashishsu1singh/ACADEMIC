@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+class SwapClass {
+private:
+    int value;
+
+public:
+    SwapClass(int val) : value(val) {}
+
+    friend void swapValues(SwapClass &a, SwapClass &b);
+
+    void display() {
+        cout << "Value: " << value << endl;
+    }
+};
+
+void swapValues(SwapClass &a, SwapClass &b) {
+    int temp = a.value;
+    a.value = b.value;
+    b.value = temp;
+}
+
+int main() {
+    SwapClass obj1(10);
+    SwapClass obj2(20);
+
+    cout << "Before swapping:" << endl;
+    obj1.display();
+    obj2.display();
+
+    swapValues(obj1, obj2);
+
+    cout << "After swapping:" << endl;
+    obj1.display();
+    obj2.display();
+
+    return 0;
+}
