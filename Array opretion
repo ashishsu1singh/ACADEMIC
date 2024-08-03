@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+void display(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int insert(int arr[], int n, int key, int capacity) {
+    if (n >= capacity) {
+        return n;
+    }
+    arr[n] = key;
+    return n + 1;
+}
+
+int deleteElement(int arr[], int n, int key) {
+    int pos = -1;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            pos = i;
+            break;
+        }
+    }
+    if (pos == -1) {
+        cout << "Element not found" << endl;
+        return n;
+    }
+    for (int i = pos; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    return n - 1;
+}
+
+int search(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int capacity = 20;
+    int arr[capacity];
+    int n = 0; // current number of elements in the array
+
+    n = insert(arr, n, 10, capacity);
+    n = insert(arr, n, 20, capacity);
+    n = insert(arr, n, 30, capacity);
+    n = insert(arr, n, 40, capacity);
+
+    cout << "Array after insertion: ";
+    display(arr, n);
+
+    int key = 30;
+    n = deleteElement(arr, n, key);
+    cout << "Array after deletion of " << key << ": ";
+    display(arr, n);
+
+    key = 20;
+    int index = search(arr, n, key);
+    if (index != -1) {
+        cout << "Element " << key << " found at index " << index << endl;
+    } else {
+        cout << "Element " << key << " not found" << endl;
+    }
+
+    return 0;
+}
