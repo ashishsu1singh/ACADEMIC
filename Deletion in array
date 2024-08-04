@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+void display(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int deleteElement(int arr[], int n, int key) {
+    // Find the position of the element to be deleted
+    int pos = -1;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            pos = i;
+            break;
+        }
+    }
+    // If element not found, return the current size of the array
+    if (pos == -1) {
+        cout << "Element not found" << endl;
+        return n;
+    }
+    // Shift elements to the left to fill the gap
+    for (int i = pos; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    // Return the new size of the array
+    return n - 1;
+}
+
+int main() {
+    int capacity = 10;
+    int arr[capacity] = {1, 2, 3, 4, 5};
+    int n = 5; // current number of elements in the array
+
+    cout << "Original array: ";
+    display(arr, n);
+
+    int key = 3;
+
+    n = deleteElement(arr, n, key);
+    cout << "Array after deletion of " << key << ": ";
+    display(arr, n);
+
+    return 0;
+}
