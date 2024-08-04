@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+void display(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int insertAtPosition(int arr[], int n, int key, int capacity, int pos) {
+    if (n >= capacity) {
+        cout << "Array is full, cannot insert element." << endl;
+        return n;
+    }
+    if (pos < 0 || pos > n) {
+        cout << "Invalid position, cannot insert element." << endl;
+        return n;
+    }
+
+    for (int i = n; i > pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos] = key;
+    return n + 1;
+}
+
+int main() {
+    int capacity = 10;
+    int arr[capacity] = {1, 2, 4, 5, 6};
+    int n = 5; // current number of elements in the array
+
+    cout << "Original array: ";
+    display(arr, n);
+
+    int key = 3;
+    int pos = 2; // position to insert the element (0-based index)
+
+    n = insertAtPosition(arr, n, key, capacity, pos);
+    cout << "Array after insertion of " << key << " at position " << pos << ": ";
+    display(arr, n);
+
+    return 0;
+}
