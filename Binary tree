@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+// Definition of the Node structure
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+    
+    Node(int value) {
+        data = value;
+        left = right = nullptr;
+    }
+};
+
+// Function to insert a node into the binary tree
+Node* insertNode(Node* root, int data) {
+    if (root == nullptr) {
+        return new Node(data);
+    }
+    
+    if (data < root->data) {
+        root->left = insertNode(root->left, data);
+    } else {
+        root->right = insertNode(root->right, data);
+    }
+    
+    return root;
+}
+
+// Function for in-order traversal of the binary tree
+void inOrderTraversal(Node* root) {
+    if (root != nullptr) {
+        inOrderTraversal(root->left);
+        cout << root->data << " ";
+        inOrderTraversal(root->right);
+    }
+}
+
+// Main function
+int main() {
+    Node* root = nullptr;
+    
+    // Inserting nodes into the binary tree
+    root = insertNode(root, 50);
+    insertNode(root, 30);
+    insertNode(root, 70);
+    insertNode(root, 20);
+    insertNode(root, 40);
+    insertNode(root, 60);
+    insertNode(root, 80);
+    
+    // Display the in-order traversal of the binary tree
+    cout << "In-order Traversal: ";
+    inOrderTraversal(root);
+    cout << endl;
+    
+    return 0;
+}
