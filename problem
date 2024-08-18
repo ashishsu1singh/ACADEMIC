@@ -1,0 +1,42 @@
+You are working at a retail company where sales data is collected daily and stored in an array. Your task is to develop a program that reads the daily sales figures from an array and determines the minimum and maximum sales made during a given period.
+Input:
+The input consists of two parts:
+An integer nnn (1 ≤ nnn ≤ 1000) indicating the number of days for which sales data is available.
+An array of nnn integers where each integer represents the sales figure for a particular day.
+Output:
+Print two integers in a single line separated by space:
+The first integer should represent the minimum sales figure observed during the given period.
+The second integer should represent the maximum sales figure observed during the given period.
+
+ans= 
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int n;
+   cout<<"Enter the number of days:";
+   cin>>n;
+   int sales[n];
+   for(int i=0;i<n;i++)
+   {
+       cin>>sales[i];
+   }
+   int min;
+   int max;
+   for(int i=0;i<n;i++)
+   {
+       if(sales[i]<min){
+           min=sales[i];
+       }
+       if(sales[i]>max){
+           max=sales[i];
+       }
+   }
+   cout<<"minimum sales is:";
+   cout<<min<<endl;
+   cout<<"maximum sales is:";
+   cout<<max;
+   return 0;
+
+}
