@@ -1,0 +1,42 @@
+que 4    2d array write a program to print the elements at the following position in seprate lines?
+
+
+ans = #include <iostream>
+using namespace std;
+
+int main() {
+    int i, j;
+
+    cout << "Enter the number of rows: ";
+    cin >> i;
+    cout << "Enter the number of columns: ";
+    cin >> j;
+
+    int arr[i][j];
+    cout << "Enter the elements into the array:\n";
+    for (int x = 0; x < i; x++) {
+        for (int y = 0; y < j; y++) {
+            cout << "Enter the element at position (" << x << ", " << y << "): ";
+            cin >> arr[x][y];
+        }
+    }
+
+    cout << "Array elements:\n";
+    for (int x = 0; x < i; x++) {
+        for (int y = 0; y < j; y++) {
+            cout << arr[x][y] << " ";
+        }
+        cout << endl;
+    }
+
+    int l;
+    cout << "Print the nth element of the third row:\n";
+    cout << "Enter the value of n: ";
+    cin >> l;
+    cout << arr[2][l - 1] << endl;
+
+    cout << "Print the third element of the second row: " << arr[1][2] << endl;
+    cout << "Print the first element of the first row: " << arr[0][0] << endl;
+
+    return 0;
+}
