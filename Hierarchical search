@@ -1,0 +1,68 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Employee {
+public:
+    string name;
+    vector<Employee*> subordinates;  // List of direct reports
+
+    Employee(string name) {
+        this->name = name;
+    }
+
+    void addSubordinate(Employee* emp) {
+        subordinates.push_back(emp);
+    }
+};
+
+// Function to perform a DFS search for an employee by name
+Employee* searchEmployee(Employee* root, string target) {
+    if (root == nullptr) return nullptr;
+    
+    // If current employee matches the target name, return the employee
+    if (root->name == target) return root;
+
+    // Recursively search among subordinates
+    for (Employee* subordinate : root->subordinates) {
+        Employee* found = searchEmployee(subordinate, target);
+        if (found != nullptr) return found;
+    }
+
+    return nullptr;  // Return nullptr if the employee is not found
+}
+
+int main() {
+    // Creating employees
+    Employee* CEO = new Employee("Alice");
+    Employee* headSales = new Employee("Bob");
+    Employee* headMarketing = new Employee("Charlie");
+    Employee* salesExecutive1 = new Employee("David");
+    Employee* salesExecutive2 = new Employee("Eva");
+
+    // Building the hierarchy
+    CEO->addSubordinate(headSales);
+    CEO->addSubordinate(headMarketing);
+    headSales->addSubordinate(salesExecutive1);
+    headSales->addSubordinate(salesExecutive2);
+
+    // Searching for an employee
+    string target = "Eva";
+    Employee* result = searchEmployee(CEO, target);
+
+    if (result != nullptr) {
+        cout << "Employee found: " << result->name << endl;
+    } else {
+        cout << "Employee not found." << endl;
+    }
+
+    // Clean up memory (optional for small examples)
+    delete CEO;
+    delete headSales;
+    delete headMarketing;
+    delete salesExecutive1;
+    delete salesExecutive2;
+
+    return 0;
+}
