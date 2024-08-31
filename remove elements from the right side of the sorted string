@@ -1,0 +1,29 @@
+remove elements from the right side of the sorted string, we can modify the inner loop?
+
+
+ans = #include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str;
+    cout << "Enter string: ";
+    getline(cin, str);
+
+    for (size_t i = 0; i < str.length(); i++) {
+        for (size_t j = 0; j < str.length() - 1 - i; j++) {
+            if (str[j] > str[j + 1]) {
+                char temp = str[j];
+                str[j] = str[j + 1];
+                str[j + 1] = temp;
+            }
+        }
+    }
+    if (!str.empty()) {
+        str.pop_back();
+    }
+
+    cout << "Sorted string (without the rightmost element): " << str << endl;
+    return 0;
+}
+  
