@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main() {
+    int arr[] = {4, 5, 9, 4, 9, 8, 7};
+    const size_t len = sizeof(arr) / sizeof(arr[0]);
+
+    sort(arr, arr + len);
+
+    auto lastUnique = unique(arr, arr + len);
+    int uniqueCount = lastUnique - arr;
+
+    cout << "Unique elements in ascending order: ";
+    for (int i = 0; i < uniqueCount; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
