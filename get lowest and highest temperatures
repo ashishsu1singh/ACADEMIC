@@ -1,0 +1,19 @@
+<?php
+// Array of recorded temperatures
+$temperatures = [78, 60, 62, 68, 71, 68, 73, 85, 66, 64, 76, 63, 75, 76, 73, 68, 62, 73, 72, 65, 74, 62, 62, 65, 64, 68, 73, 75, 79, 73];
+
+// Calculate average temperature
+$sum = array_sum($temperatures);
+$count = count($temperatures);
+$average = $sum / $count;
+
+// Sort the array to get lowest and highest temperatures
+sort($temperatures);
+$lowest = array_slice($temperatures, 0, 5);
+$highest = array_slice(array_reverse($temperatures), 0, 5);
+
+// Display results
+echo "Average Temperature: " . round($average, 2) . "°F\n";
+echo "Five Lowest Temperatures: " . implode(", ", $lowest) . "°F\n";
+echo "Five Highest Temperatures: " . implode(", ", $highest) . "°F\n";
+?>
